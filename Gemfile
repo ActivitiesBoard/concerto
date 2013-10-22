@@ -48,6 +48,8 @@ gem "rmagick", ">= 2.12.2", :require => 'RMagick', :platforms => :ruby
 gem 'attachable', '>= 0.0.5'
 
 gem 'devise', '~> 3.0.0'
+gem 'omniauth'
+gem 'omniauth-shibboleth'
 gem 'cancan'
 
 gem 'json', '1.7.7'
