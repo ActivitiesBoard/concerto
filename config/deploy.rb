@@ -19,10 +19,10 @@
 # 5. Run: cap deploy:setup && cap deploy:check
 # 6. Run: cap deploy                <=== this is all you need for subsequent deploys
 
-set :user, "concerto"
+set :user, "ab"
 
 set :application, "concerto"
-set :repository,  "https://github.com/concerto/concerto.git"
+set :repository,  "https://github.com/ActivitiesBoard/concerto.git"
 ##set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/#{application}"  # only needed if running under sub-uri
 
 # this code will get the latest official release, unless a branch was specified in the command line
@@ -33,11 +33,11 @@ set :branch do
   default_tag
 end unless exists?(:branch)
 
-role :web, "concerto"                   # Your HTTP server, Apache/etc
-role :app, "concerto"                   # This may be the same as your `Web` server
-role :db,  "concerto", :primary => true # This is where Rails migrations will run
+role :web, "signage.activitiesboard.org"                   # Your HTTP server, Apache/etc
+role :app, "signage.activitiesboard.org"                   # This may be the same as your `Web` server
+role :db,  "signage.activitiesboard.org", :primary => true # This is where Rails migrations will run
 
-set :deploy_to, "/var/webapps/#{application}"    # make sure this exists and is writable
+set :deploy_to, "/srv/rails/#{application}"    # make sure this exists and is writable
 ##set :deploy_to, "/media/blue2/webapps/#{application}"    # make sure this exists and is writable
 
 set :use_sudo, false
@@ -116,6 +116,6 @@ end
 before 'deploy:assets:precompile', 'bundler:create_symlink'
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
-require "capistrano-tags"       # needed to deploy tags that are not also branches
+#require "capistrano-tags"       # needed to deploy tags that are not also branches
 require "bundler/capistrano"    # needed to be able to bundle stuff
 require "capistrano_database"   # needed to create and link database.yml
