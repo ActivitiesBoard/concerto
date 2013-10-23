@@ -19,7 +19,7 @@
 # 5. Run: cap deploy:setup && cap deploy:check
 # 6. Run: cap deploy                <=== this is all you need for subsequent deploys
 
-set :user, "ab"
+set :user, "root"
 
 set :application, "concerto"
 set :repository,  "https://github.com/ActivitiesBoard/concerto.git"
@@ -40,7 +40,6 @@ role :db,  "signage.activitiesboard.org", :primary => true # This is where Rails
 set :deploy_to, "/srv/rails/#{application}"    # make sure this exists and is writable
 ##set :deploy_to, "/media/blue2/webapps/#{application}"    # make sure this exists and is writable
 
-set :use_sudo, false
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true # must be true for password prompt from git or ssh to work
 
