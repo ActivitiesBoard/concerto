@@ -25,14 +25,6 @@ set :application, "concerto"
 set :repository,  "https://github.com/ActivitiesBoard/concerto.git"
 ##set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/#{application}"  # only needed if running under sub-uri
 
-# this code will get the latest official release, unless a branch was specified in the command line
-# like: cap -S branch="master" deploy
-# master will deploy the most current development version
-set :branch do
-  default_tag = `git tag`.split("\n").last
-  default_tag
-end unless exists?(:branch)
-
 role :web, "signage.activitiesboard.org"                   # Your HTTP server, Apache/etc
 role :app, "signage.activitiesboard.org"                   # This may be the same as your `Web` server
 role :db,  "signage.activitiesboard.org", :primary => true # This is where Rails migrations will run
