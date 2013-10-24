@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     return supporting_groups
   end
 
-  def self.find_for_shibboleth_oauth(auth, signed_in_resource=nil)
+  def self.find_for_shibboleth_oauth(request, signed_in_resource=nil)
     user = User.where(:email => request.env['REMOTE_USER']).first
     unless user
       user = User.create(email: request.env['REMOTE_USER'],
