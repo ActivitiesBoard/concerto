@@ -7,6 +7,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 #    else
 #      session["devise.shibboleth_data"] = request.env["omniauth.auth"]
 #      redirect_to new_user_registration_url
-    end
+#    end
   end
 end
