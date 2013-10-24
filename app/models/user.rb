@@ -68,6 +68,7 @@ class User < ActiveRecord::Base
     user = User.where(:email => request.env['REMOTE_USER']).first
     unless user
       user = User.create(email: request.env['REMOTE_USER'],
+                         first_name: request.env['REMOTE_USER'].split('@')[0]
                          password: Devise.friendly_token[0,20])
     end
     return user
