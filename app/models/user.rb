@@ -65,11 +65,10 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_shibboleth_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    user = User.where(:email => request.env['REMOTE_USER']).first
     unless user
-      user = User.create(provider:auth.provider,
-                         uid:auth.uid,
-                         password:Devise.friendly_token[0,20])
+      user = User.create(email: request.env['REMOTE_USER'],
+                         password: Devise.friendly_token[0,20])
     end
     user
   end
