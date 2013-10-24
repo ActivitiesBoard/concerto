@@ -70,6 +70,6 @@ class User < ActiveRecord::Base
       user = User.create(email: request.env['REMOTE_USER'],
                          password: Devise.friendly_token[0,20])
     end
-    user
+    return user
   end
 end
